@@ -15,6 +15,7 @@
 		70DD37542F40BFBB003EDD4B /* SearchRepositoriesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DD37532F40BFBB003EDD4B /* SearchRepositoriesResponse.swift */; };
 		70DD37562F40C003003EDD4B /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DD37552F40C003003EDD4B /* Repository.swift */; };
 		70DD37592F40C6B1003EDD4B /* QueryTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DD37582F40C6B1003EDD4B /* QueryTextField.swift */; };
+		70DD375B2F40C762003EDD4B /* RepositoryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DD375A2F40C762003EDD4B /* RepositoryList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		70DD37532F40BFBB003EDD4B /* SearchRepositoriesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRepositoriesResponse.swift; sourceTree = "<group>"; };
 		70DD37552F40C003003EDD4B /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		70DD37582F40C6B1003EDD4B /* QueryTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryTextField.swift; sourceTree = "<group>"; };
+		70DD375A2F40C762003EDD4B /* RepositoryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				70DD37582F40C6B1003EDD4B /* QueryTextField.swift */,
+				70DD375A2F40C762003EDD4B /* RepositoryList.swift */,
 			);
 			path = Content;
 			sourceTree = "<group>";
@@ -186,6 +189,7 @@
 				70DD371F2F4088C7003EDD4B /* ContentView.swift in Sources */,
 				70DD37202F4088C7003EDD4B /* GitHubSearchRepositoriesApp.swift in Sources */,
 				70DD37502F409385003EDD4B /* ContentViewModel.swift in Sources */,
+				70DD375B2F40C762003EDD4B /* RepositoryList.swift in Sources */,
 				70DD37522F40B4A8003EDD4B /* SearchRepositoriesConst.swift in Sources */,
 				70DD37542F40BFBB003EDD4B /* SearchRepositoriesResponse.swift in Sources */,
 				70DD37592F40C6B1003EDD4B /* QueryTextField.swift in Sources */,

@@ -7,6 +7,7 @@ final class ContentViewModel: ObservableObject {
     @Published var textFieldText = ""
     
     @Published var repositories: [Repository]?
+    @Published var searchDetailText: String?
     
     @Published var isLoading = false
     @Published var errorMessage: String?
@@ -14,7 +15,10 @@ final class ContentViewModel: ObservableObject {
     func search() {
         Task {
             isLoading = true
-            defer { isLoading = false }
+            defer {
+                searchDetailText = "クエリ（\(textFieldText)）での検索結果"
+                isLoading = false
+            }
             do {
                 var urlComponents = URLComponents(string: SearchRepositoriesConst.searchURL)
                 urlComponents?.queryItems = [
