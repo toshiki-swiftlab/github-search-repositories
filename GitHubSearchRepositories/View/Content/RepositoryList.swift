@@ -12,6 +12,11 @@ struct RepositoryList: View {
                         Section(content: {
                             ForEach(viewModel.repositories ?? [], id: \.id) { repository in
                                 Text(repository.name)
+                                    .onAppear {
+                                        if repository.id == viewModel.repositories?.last?.id {
+                                            viewModel.search(isLoadMore: true)
+                                        }
+                                    }
                             }
                         }, header: {
                             if let searchDetailText = viewModel.searchDetailText {

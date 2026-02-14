@@ -5,15 +5,21 @@ import Combine
 final class ContentViewModel: ObservableObject {
     
     @Published var textFieldText = ""
+    @Published var pageIndex = 1
     
     @Published var repositories: [Repository]?
     @Published var searchDetailText: String?
     
     @Published var isLoading = false
+    @Published var canLoadMore = true
     @Published var errorMessage: String?
     
-    func search() {
+    func search(isLoadMore: Bool = false) {
         if isLoading { return }
+        if !isLoadMore {
+            pageIndex = 1
+            canLoadMore = true
+        }
         Task {
             isLoading = true
             defer {
@@ -23,7 +29,8 @@ final class ContentViewModel: ObservableObject {
             do {
                 var urlComponents = URLComponents(string: SearchRepositoriesConst.searchURL)
                 urlComponents?.queryItems = [
-                    .init(name: "q", value: textFieldText)
+                    .init(name: "q", value: textFieldText),
+                    .init(name: "page", value: String(pageIndex))
                 ]
                 guard let url = urlComponents?.url else {
                     throw URLError(.badURL)
@@ -42,7 +49,15 @@ final class ContentViewModel: ObservableObject {
                     let decoder = JSONDecoder()
                     decoder.keyDecodingStrategy = .convertFromSnakeCase
                     let decoded = try decoder.decode(SearchRepositoriesResponse.self, from: data)
-                    repositories = decoded.items
+                    if pageIndex == 1 {
+                        repositories = decoded.items
+                    } else {
+                        repositories?.append(contentsOf: decoded.items)
+                    }
+                    pageIndex += 1
+                    if decoded.items.count < SearchRepositoriesConst.perPage {
+                        canLoadMore = false
+                    }
                 case .notModified:
                     break
                 default:
