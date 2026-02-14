@@ -50,10 +50,42 @@
 			isa = PBXGroup;
 			children = (
 				70DD371C2F4088C7003EDD4B /* GitHubSearchRepositoriesApp.swift */,
-				70DD371B2F4088C7003EDD4B /* ContentView.swift */,
+				70DD374B2F4091F6003EDD4B /* View */,
+				70DD374C2F409201003EDD4B /* ViewModel */,
+				70DD374D2F40921C003EDD4B /* Model */,
+				70DD374E2F409291003EDD4B /* Const */,
 				70DD371A2F4088C7003EDD4B /* Assets.xcassets */,
 			);
 			path = GitHubSearchRepositories;
+			sourceTree = "<group>";
+		};
+		70DD374B2F4091F6003EDD4B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				70DD371B2F4088C7003EDD4B /* ContentView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		70DD374C2F409201003EDD4B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		70DD374D2F40921C003EDD4B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		70DD374E2F409291003EDD4B /* Const */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Const;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
