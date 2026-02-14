@@ -6,12 +6,17 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            TextField("クエリを入力して下さい！", text: $viewModel.textFieldText)
+                .textFieldStyle(.plain)
+                .padding()
+                .background(Color(uiColor: .secondarySystemBackground))
+                .clipShape(.capsule)
+                .padding(.horizontal)
+                .submitLabel(.search)
+                .onSubmit {
+                    viewModel.search()
+                }
         }
-        .padding()
     }
 }
 
