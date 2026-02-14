@@ -14,6 +14,7 @@
 		70DD37522F40B4A8003EDD4B /* SearchRepositoriesConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DD37512F40B4A8003EDD4B /* SearchRepositoriesConst.swift */; };
 		70DD37542F40BFBB003EDD4B /* SearchRepositoriesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DD37532F40BFBB003EDD4B /* SearchRepositoriesResponse.swift */; };
 		70DD37562F40C003003EDD4B /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DD37552F40C003003EDD4B /* Repository.swift */; };
+		70DD37592F40C6B1003EDD4B /* QueryTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DD37582F40C6B1003EDD4B /* QueryTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		70DD37512F40B4A8003EDD4B /* SearchRepositoriesConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRepositoriesConst.swift; sourceTree = "<group>"; };
 		70DD37532F40BFBB003EDD4B /* SearchRepositoriesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRepositoriesResponse.swift; sourceTree = "<group>"; };
 		70DD37552F40C003003EDD4B /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		70DD37582F40C6B1003EDD4B /* QueryTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 		70DD374B2F4091F6003EDD4B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				70DD37572F40C690003EDD4B /* Content */,
 				70DD371B2F4088C7003EDD4B /* ContentView.swift */,
 			);
 			path = View;
@@ -98,6 +101,14 @@
 				70DD37512F40B4A8003EDD4B /* SearchRepositoriesConst.swift */,
 			);
 			path = Const;
+			sourceTree = "<group>";
+		};
+		70DD37572F40C690003EDD4B /* Content */ = {
+			isa = PBXGroup;
+			children = (
+				70DD37582F40C6B1003EDD4B /* QueryTextField.swift */,
+			);
+			path = Content;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -177,6 +188,7 @@
 				70DD37502F409385003EDD4B /* ContentViewModel.swift in Sources */,
 				70DD37522F40B4A8003EDD4B /* SearchRepositoriesConst.swift in Sources */,
 				70DD37542F40BFBB003EDD4B /* SearchRepositoriesResponse.swift in Sources */,
+				70DD37592F40C6B1003EDD4B /* QueryTextField.swift in Sources */,
 				70DD37562F40C003003EDD4B /* Repository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

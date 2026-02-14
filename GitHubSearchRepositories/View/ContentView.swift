@@ -6,16 +6,7 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            TextField("クエリを入力して下さい！", text: $viewModel.textFieldText)
-                .textFieldStyle(.plain)
-                .padding()
-                .background(Color(uiColor: .secondarySystemBackground))
-                .clipShape(.capsule)
-                .padding(.horizontal)
-                .submitLabel(.search)
-                .onSubmit {
-                    viewModel.search()
-                }
+            QueryTextField(viewModel: viewModel)
         }
     }
 }
