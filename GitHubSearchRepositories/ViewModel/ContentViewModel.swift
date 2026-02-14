@@ -30,6 +30,7 @@ final class ContentViewModel: ObservableObject {
                 var urlComponents = URLComponents(string: SearchRepositoriesConst.searchURL)
                 urlComponents?.queryItems = [
                     .init(name: "q", value: textFieldText),
+                    .init(name: "per_page", value: String(SearchRepositoriesConst.perPage)),
                     .init(name: "page", value: String(pageIndex))
                 ]
                 guard let url = urlComponents?.url else {
