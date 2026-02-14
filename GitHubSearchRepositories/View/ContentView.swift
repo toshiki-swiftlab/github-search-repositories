@@ -6,9 +6,14 @@ struct ContentView: View {
     
     var body: some View {
         NavigationStack {
-            VStack {
-                QueryTextField(viewModel: viewModel)
-                RepositoryList(viewModel: viewModel)
+            ZStack {
+                VStack {
+                    QueryTextField(viewModel: viewModel)
+                    RepositoryList(viewModel: viewModel)
+                }
+                if viewModel.isLoading {
+                    LoadingView()
+                }
             }
             .navigationTitle("GitHubレポジトリ検索")
             .navigationBarTitleDisplayMode(.inline)

@@ -13,6 +13,7 @@ final class ContentViewModel: ObservableObject {
     @Published var errorMessage: String?
     
     func search() {
+        if isLoading { return }
         Task {
             isLoading = true
             defer {
