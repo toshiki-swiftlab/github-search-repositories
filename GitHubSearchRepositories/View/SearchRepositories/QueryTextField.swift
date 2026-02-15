@@ -2,7 +2,7 @@ import SwiftUI
 
 struct QueryTextField: View {
     
-    @ObservedObject var viewModel: ContentViewModel
+    @ObservedObject var viewModel: SearchRepositoriesViewModel
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -26,5 +26,5 @@ struct QueryTextField: View {
 }
 
 #Preview {
-    QueryTextField(viewModel: ContentViewModel())
+    QueryTextField(viewModel: SearchRepositoriesViewModel())
 }

@@ -2,7 +2,7 @@ import SwiftUI
 
 struct RepositoryList: View {
     
-    @ObservedObject var viewModel: ContentViewModel
+    @ObservedObject var viewModel: SearchRepositoriesViewModel
     
     var body: some View {
         VStack {
@@ -24,7 +24,7 @@ struct RepositoryList: View {
 
 private struct ListView: View {
     
-    @ObservedObject var viewModel: ContentViewModel
+    @ObservedObject var viewModel: SearchRepositoriesViewModel
     
     var body: some View {
         List {
@@ -68,5 +68,5 @@ private struct NotFoundView: View {
 }
 
 #Preview {
-    RepositoryList(viewModel: ContentViewModel())
+    RepositoryList(viewModel: SearchRepositoriesViewModel())
 }

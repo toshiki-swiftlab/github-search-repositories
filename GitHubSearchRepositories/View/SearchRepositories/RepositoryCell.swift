@@ -2,7 +2,7 @@ import SwiftUI
 
 struct RepositoryCell: View {
     
-    @ObservedObject var viewModel: ContentViewModel
+    @ObservedObject var viewModel: SearchRepositoriesViewModel
     let repository: Repository
     
     var body: some View {
@@ -42,7 +42,7 @@ struct RepositoryCell: View {
 
 #Preview {
     RepositoryCell(
-        viewModel: ContentViewModel(),
+        viewModel: SearchRepositoriesViewModel(),
         repository: Repository(
             id: 1,
             name: "レポジトリ名",
