@@ -40,7 +40,7 @@ final class SearchRepositoriesViewModel: ObservableObject {
                     repositories?.append(contentsOf: response.items)
                 }
                 pageIndex += 1
-                if response.items.count < SearchRepositoriesConst.perPage {
+                if response.items.count < SearchRepositoriesConst.perPage || response.totalCount == repositories?.count {
                     canLoadMore = false
                 }
                 totalCount = response.totalCount
