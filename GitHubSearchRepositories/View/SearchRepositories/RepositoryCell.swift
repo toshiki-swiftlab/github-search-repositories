@@ -11,9 +11,6 @@ struct RepositoryCell: View {
         }, label: {
             VStack(alignment: .leading) {
                 Text(repository.name)
-                    .onAppear {
-                        viewModel.onLastCellAppear(repository)
-                    }
                 if let description = repository.description {
                     Text(description)
                         .foregroundStyle(.secondary)
@@ -37,6 +34,9 @@ struct RepositoryCell: View {
             }
         })
         .foregroundStyle(.primary)
+        .onAppear {
+            viewModel.onLastCellAppear(repository)
+        }
     }
 }
 

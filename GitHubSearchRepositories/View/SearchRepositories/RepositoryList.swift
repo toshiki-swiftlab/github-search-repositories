@@ -16,12 +16,12 @@ struct RepositoryList: View {
             } else {
                 // nil（初回検索前）
                 Spacer()
-                    .contentShape(Rectangle())
             }
         }
     }
 }
 
+/// レポジトリが見つかった時のリストビュー
 private struct ListView: View {
     
     @ObservedObject var viewModel: SearchRepositoriesViewModel

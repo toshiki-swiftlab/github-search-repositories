@@ -1,15 +1,15 @@
-import Foundation
-import SwiftUI
 import Combine
+import UIKit
 
 @MainActor
 final class SearchRepositoriesViewModel: ObservableObject {
     
     @Published var textFieldText = ""
-    @Published var pageIndex = 1
+    @Published var pageNumber = 1
     
     @Published var repositories: [Repository]?
     @Published var searchDetailText: String?
+    /// 検索総ヒット数
     @Published var totalCount: Int?
     
     @Published var isLoading = false
@@ -22,7 +22,7 @@ final class SearchRepositoriesViewModel: ObservableObject {
         if textFieldText == "" { return }
         if isLoadMore && !canLoadMore { return }
         if !isLoadMore {
-            pageIndex = 1
+            pageNumber = 1
             canLoadMore = true
         }
         Task {
@@ -32,14 +32,15 @@ final class SearchRepositoriesViewModel: ObservableObject {
                 isLoading = false
             }
             do {
-                let response = try await GitHubAPIClient().searchRepositories(query: textFieldText, page: pageIndex)
+                let response = try await GitHubAPIClient().searchRepositories(query: textFieldText, page: pageNumber)
+                // response: nilは、"notModified"ステータスコードの時のみであり、成功処理も失敗処理もしない。
                 guard let response else { return }
-                if pageIndex == 1 {
+                if pageNumber == 1 {
                     repositories = response.items
                 } else {
                     repositories?.append(contentsOf: response.items)
                 }
-                pageIndex += 1
+                pageNumber += 1
                 if response.items.count < SearchRepositoriesConst.perPage || response.totalCount == repositories?.count {
                     canLoadMore = false
                 }
@@ -51,6 +52,8 @@ final class SearchRepositoriesViewModel: ObservableObject {
         }
     }
     
+    /// 最後尾のセルが表示された時の処理
+    /// - 再読み込み処理を実行
     func onLastCellAppear(_ repository: Repository) {
         if repository.id == repositories?.last?.id {
             search(isLoadMore: true)

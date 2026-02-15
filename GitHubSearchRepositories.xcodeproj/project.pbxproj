@@ -64,6 +64,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		706EB6432F422776004D1157 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				70DD375C2F40CE43003EDD4B /* LoadingView.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		7096EDAB2F41CD1800E230E6 /* Service */ = {
 			isa = PBXGroup;
 			children = (
@@ -89,9 +97,9 @@
 		70DD374B2F4091F6003EDD4B /* View */ = {
 			isa = PBXGroup;
 			children = (
-				70DD37572F40C690003EDD4B /* SearchRepositories */,
 				70DD371B2F4088C7003EDD4B /* SearchRepositoriesView.swift */,
-				70DD375C2F40CE43003EDD4B /* LoadingView.swift */,
+				70DD37572F40C690003EDD4B /* SearchRepositories */,
+				706EB6432F422776004D1157 /* Common */,
 			);
 			path = View;
 			sourceTree = "<group>";
