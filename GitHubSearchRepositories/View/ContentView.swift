@@ -17,6 +17,15 @@ struct ContentView: View {
             }
             .navigationTitle("GitHubレポジトリ検索")
             .navigationBarTitleDisplayMode(.inline)
+            .alert(
+                "エラー",
+                isPresented: $viewModel.isErrorAlertPresented,
+                presenting: viewModel.errorMessage,
+                actions: { _ in },
+                message: { erroeMessage in
+                    Text(erroeMessage)
+                }
+            )
         }
     }
 }

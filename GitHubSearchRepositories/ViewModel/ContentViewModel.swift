@@ -13,6 +13,7 @@ final class ContentViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var canLoadMore = true
     @Published var errorMessage: String?
+    @Published var isErrorAlertPresented = false
     
     func search(isLoadMore: Bool = false) {
         if isLoading { return }
@@ -41,14 +42,17 @@ final class ContentViewModel: ObservableObject {
                 urlRequest.setValue("2022-11-28", forHTTPHeaderField: "X-GitHub-Api-Version")
                 urlRequest.setValue("application/vnd.github+json", forHTTPHeaderField: "accept")
                 let (data, response) = try await URLSession.shared.data(for: urlRequest)
+                if let jsonString = String(data: data, encoding: .utf8) {
+                    print("📦 APIの生データ: \n\(jsonString)")
+                }
                 guard let httpResponse = response as? HTTPURLResponse else {
                     throw URLError(.badServerResponse)
                 }
                 let status = SearchRepositoriesConst.StatusCode(rawValue: httpResponse.statusCode)
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
                 switch status {
                 case .ok:
-                    let decoder = JSONDecoder()
-                    decoder.keyDecodingStrategy = .convertFromSnakeCase
                     let decoded = try decoder.decode(SearchRepositoriesResponse.self, from: data)
                     if pageIndex == 1 {
                         repositories = decoded.items
@@ -62,12 +66,14 @@ final class ContentViewModel: ObservableObject {
                 case .notModified:
                     break
                 default:
-                    errorMessage = status?.message ?? "予期せぬエラーが発生しました(\(httpResponse.statusCode))"
+                    let response = try decoder.decode(SearchRepositoriesErrorResponse.self, from: data)
+                    errorMessage = response.message
+                    isErrorAlertPresented = true
                     return
                 }
             } catch {
-                print(error.localizedDescription)
                 errorMessage = error.localizedDescription
+                isErrorAlertPresented = true
             }
         }
     }

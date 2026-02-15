@@ -5,3 +5,7 @@ struct SearchRepositoriesResponse: Codable {
         case items
     }
 }
+
+struct SearchRepositoriesErrorResponse: Codable {
+    let message: String
+}
