@@ -1,4 +1,5 @@
 import Foundation
+import SwiftUI
 import Combine
 
 @MainActor
@@ -77,6 +78,13 @@ final class ContentViewModel: ObservableObject {
                 errorMessage = error.localizedDescription
                 isErrorAlertPresented = true
             }
+        }
+    }
+    
+    func openURL(_ urlString: String) {
+        guard let url = URL(string: urlString) else { return }
+        if UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url)
         }
     }
     

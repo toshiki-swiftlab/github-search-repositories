@@ -6,17 +6,22 @@ struct RepositoryCell: View {
     let repository: Repository
     
     var body: some View {
-        VStack(alignment: .leading) {
-            Text(repository.name)
-                .onAppear {
-                    if repository.id == viewModel.repositories?.last?.id {
-                        viewModel.search(isLoadMore: true)
+        Button(action: {
+            viewModel.openURL(repository.htmlUrl)
+        }, label: {
+            VStack(alignment: .leading) {
+                Text(repository.name)
+                    .onAppear {
+                        if repository.id == viewModel.repositories?.last?.id {
+                            viewModel.search(isLoadMore: true)
+                        }
                     }
-                }
-            Text(repository.description)
-                .foregroundStyle(.secondary)
-                .font(.callout)
-        }
+                Text(repository.description)
+                    .foregroundStyle(.secondary)
+                    .font(.callout)
+            }
+        })
+        .foregroundStyle(.primary)
     }
 }
 
@@ -27,7 +32,7 @@ struct RepositoryCell: View {
             id: 1,
             name: "レポジトリ名",
             description: "説明",
-            url: "https://github.com/example/repo"
+            htmlUrl: "https://github.com/example/repo"
         )
     )
 }
