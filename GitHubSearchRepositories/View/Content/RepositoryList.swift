@@ -11,17 +11,10 @@ struct RepositoryList: View {
                     List {
                         Section(content: {
                             ForEach(viewModel.repositories ?? [], id: \.id) { repository in
-                                VStack(alignment: .leading) {
-                                    Text(repository.name)
-                                        .onAppear {
-                                            if repository.id == viewModel.repositories?.last?.id {
-                                                viewModel.search(isLoadMore: true)
-                                            }
-                                        }
-                                    Text(repository.description)
-                                        .foregroundStyle(.secondary)
-                                        .font(.callout)
-                                }
+                                RepositoryCell(
+                                    viewModel: viewModel,
+                                    repository: repository
+                                )
                             }
                         }, header: {
                             VStack(alignment: .leading) {
