@@ -19,6 +19,7 @@ final class ContentViewModel: ObservableObject {
     
     func search(isLoadMore: Bool = false) {
         if isLoading { return }
+        if textFieldText == "" { return }
         if !isLoadMore {
             pageIndex = 1
             canLoadMore = true
