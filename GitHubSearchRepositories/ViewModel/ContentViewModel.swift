@@ -82,11 +82,16 @@ final class ContentViewModel: ObservableObject {
         }
     }
     
+    func onLastCellAppear(_ repository: Repository) {
+        if repository.id == repositories?.last?.id {
+            search(isLoadMore: true)
+        }
+    }
+    
     func openURL(_ urlString: String) {
         guard let url = URL(string: urlString) else { return }
         if UIApplication.shared.canOpenURL(url) {
             UIApplication.shared.open(url)
         }
     }
-    
 }

@@ -12,9 +12,7 @@ struct RepositoryCell: View {
             VStack(alignment: .leading) {
                 Text(repository.name)
                     .onAppear {
-                        if repository.id == viewModel.repositories?.last?.id {
-                            viewModel.search(isLoadMore: true)
-                        }
+                        viewModel.onLastCellAppear(repository)
                     }
                 if let description = repository.description {
                     Text(description)
@@ -31,7 +29,6 @@ struct RepositoryCell: View {
                     }
                     HStack(spacing: 4) {
                         Image(systemName: "star.fill")
-                           
                         Text(String(repository.stargazersCount))
                     }
                     .foregroundStyle(.yellow)
