@@ -4,7 +4,7 @@ import SwiftUI
 struct GitHubSearchRepositoriesApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            SearchRepositoriesView()
         }
     }
 }
