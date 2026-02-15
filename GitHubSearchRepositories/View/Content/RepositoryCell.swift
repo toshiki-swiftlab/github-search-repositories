@@ -19,6 +19,11 @@ struct RepositoryCell: View {
                 Text(repository.description)
                     .foregroundStyle(.secondary)
                     .font(.callout)
+                Text(repository.language)
+                    .padding(.horizontal)
+                    .padding(.vertical, 4)
+                    .background(Color.blue.opacity(0.3))
+                    .clipShape(.capsule)
             }
         })
         .foregroundStyle(.primary)
@@ -32,7 +37,8 @@ struct RepositoryCell: View {
             id: 1,
             name: "レポジトリ名",
             description: "説明",
-            htmlUrl: "https://github.com/example/repo"
+            htmlUrl: "https://github.com/example/repo",
+            language: "Swift"
         )
     )
 }

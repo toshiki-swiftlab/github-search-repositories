@@ -3,4 +3,5 @@ struct Repository: Codable {
     let name: String
     let description: String
     let htmlUrl: String
+    let language: String
 }
