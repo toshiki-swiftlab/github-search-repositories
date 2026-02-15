@@ -18,6 +18,7 @@ struct RepositoryCell: View {
                     Text(description)
                         .foregroundStyle(.secondary)
                         .font(.callout)
+                        .lineLimit(3)
                 }
                 HStack {
                     if let language = repository.language {
