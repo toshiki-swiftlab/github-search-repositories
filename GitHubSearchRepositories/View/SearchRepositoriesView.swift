@@ -1,8 +1,8 @@
 import SwiftUI
 
-struct ContentView: View {
+struct SearchRepositoriesView: View {
     
-    @StateObject var viewModel = ContentViewModel()
+    @StateObject var viewModel = SearchRepositoriesViewModel()
     
     var body: some View {
         NavigationStack {
@@ -31,5 +31,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView(viewModel: ContentViewModel())
+    SearchRepositoriesView(viewModel: SearchRepositoriesViewModel())
 }

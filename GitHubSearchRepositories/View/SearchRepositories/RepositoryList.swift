@@ -16,6 +16,7 @@ struct RepositoryList: View {
             } else {
                 // nil（初回検索前）
                 Spacer()
+                    .contentShape(Rectangle())
             }
         }
     }

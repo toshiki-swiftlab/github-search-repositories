@@ -3,7 +3,7 @@ import SwiftUI
 import Combine
 
 @MainActor
-final class ContentViewModel: ObservableObject {
+final class SearchRepositoriesViewModel: ObservableObject {
     
     @Published var textFieldText = ""
     @Published var pageIndex = 1
