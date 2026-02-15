@@ -19,11 +19,16 @@ struct RepositoryList: View {
                                     }
                             }
                         }, header: {
-                            if let searchDetailText = viewModel.searchDetailText {
-                                Text(searchDetailText)
-                                    .font(.caption)
-                                    .foregroundStyle(.secondary)
+                            VStack(alignment: .leading) {
+                                if let searchDetailText = viewModel.searchDetailText {
+                                    Text(searchDetailText)
+                                }
+                                if let totalCount = viewModel.totalCount {
+                                    Text("\(totalCount)件のレポジトリ")
+                                }
                             }
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
                         })
                     }
                     .scrollDismissesKeyboard(.interactively)

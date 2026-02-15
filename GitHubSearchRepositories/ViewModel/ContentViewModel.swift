@@ -9,6 +9,7 @@ final class ContentViewModel: ObservableObject {
     
     @Published var repositories: [Repository]?
     @Published var searchDetailText: String?
+    @Published var totalCount: Int?
     
     @Published var isLoading = false
     @Published var canLoadMore = true
@@ -53,16 +54,17 @@ final class ContentViewModel: ObservableObject {
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
                 switch status {
                 case .ok:
-                    let decoded = try decoder.decode(SearchRepositoriesResponse.self, from: data)
+                    let response = try decoder.decode(SearchRepositoriesResponse.self, from: data)
                     if pageIndex == 1 {
-                        repositories = decoded.items
+                        repositories = response.items
                     } else {
-                        repositories?.append(contentsOf: decoded.items)
+                        repositories?.append(contentsOf: response.items)
                     }
                     pageIndex += 1
-                    if decoded.items.count < SearchRepositoriesConst.perPage {
+                    if response.items.count < SearchRepositoriesConst.perPage {
                         canLoadMore = false
                     }
+                    totalCount = response.totalCount
                 case .notModified:
                     break
                 default:

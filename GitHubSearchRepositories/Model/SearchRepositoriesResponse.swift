@@ -1,9 +1,7 @@
 struct SearchRepositoriesResponse: Codable {
+    let totalCount: Int
     let items: [Repository]
     
-    enum CodingKeys: String, CodingKey {
-        case items
-    }
 }
 
 struct SearchRepositoriesErrorResponse: Codable {
