@@ -24,6 +24,12 @@ struct RepositoryCell: View {
                     .padding(.vertical, 4)
                     .background(Color.blue.opacity(0.3))
                     .clipShape(.capsule)
+                    HStack(spacing: 4) {
+                        Image(systemName: "star.fill")
+                           
+                        Text(String(repository.stargazersCount))
+                    }
+                    .foregroundStyle(.yellow)
             }
         })
         .foregroundStyle(.primary)
@@ -38,7 +44,8 @@ struct RepositoryCell: View {
             name: "レポジトリ名",
             description: "説明",
             htmlUrl: "https://github.com/example/repo",
-            language: "Swift"
+            language: "Swift",
+            stargazersCount: 100
         )
     )
 }

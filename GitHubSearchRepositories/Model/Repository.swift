@@ -4,4 +4,5 @@ struct Repository: Codable {
     let description: String
     let htmlUrl: String
     let language: String
+    let stargazersCount: Int
 }
