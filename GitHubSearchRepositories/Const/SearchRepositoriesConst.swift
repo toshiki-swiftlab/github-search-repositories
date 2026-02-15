@@ -1,5 +1,5 @@
 enum SearchRepositoriesConst {
-    static let searchURL = "https://api.github.com/search/repositories"
+    static let endpoint = "https://api.github.com/search/repositories"
     
     static let perPage = 30
     

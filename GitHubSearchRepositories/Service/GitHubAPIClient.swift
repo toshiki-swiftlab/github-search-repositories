@@ -2,8 +2,12 @@ import Foundation
 
 struct GitHubAPIClient {
     
+    /// GitHubのリポジトリ検索APIを実行
+    /// - Parameters:
+    ///   - query: クエリ
+    ///   - page: ページ番号
     func searchRepositories(query: String, page: Int) async throws -> SearchRepositoriesResponse? {
-        var urlComponents = URLComponents(string: SearchRepositoriesConst.searchURL)
+        var urlComponents = URLComponents(string: SearchRepositoriesConst.endpoint)
         urlComponents?.queryItems = [
             .init(name: "q", value: query),
             .init(name: "per_page", value: String(SearchRepositoriesConst.perPage)),
@@ -28,6 +32,7 @@ struct GitHubAPIClient {
             let response = try decoder.decode(SearchRepositoriesResponse.self, from: data)
             return response
         case .notModified:
+            // 失敗処理は行わない
             return nil
         default:
             if let errorResponse = try? decoder.decode(SearchRepositoriesErrorResponse.self, from: data) {
