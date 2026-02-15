@@ -3,6 +3,6 @@ struct SearchRepositoriesResponse: Codable {
     let items: [Repository]
 }
 
-struct SearchRepositoriesErrorResponse: Codable {
+struct SearchRepositoriesErrorResponse: Codable, Error {
     let message: String
 }

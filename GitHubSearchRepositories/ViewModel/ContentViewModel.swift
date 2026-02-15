@@ -31,50 +31,18 @@ final class ContentViewModel: ObservableObject {
                 isLoading = false
             }
             do {
-                var urlComponents = URLComponents(string: SearchRepositoriesConst.searchURL)
-                urlComponents?.queryItems = [
-                    .init(name: "q", value: textFieldText),
-                    .init(name: "per_page", value: String(SearchRepositoriesConst.perPage)),
-                    .init(name: "page", value: String(pageIndex))
-                ]
-                guard let url = urlComponents?.url else {
-                    throw URLError(.badURL)
+                let response = try await GitHubAPIClient().searchRepositories(query: textFieldText, page: pageIndex)
+                guard let response else { return }
+                if pageIndex == 1 {
+                    repositories = response.items
+                } else {
+                    repositories?.append(contentsOf: response.items)
                 }
-                var urlRequest = URLRequest(url: url)
-                urlRequest.httpMethod = "GET"
-                urlRequest.setValue("2022-11-28", forHTTPHeaderField: "X-GitHub-Api-Version")
-                urlRequest.setValue("application/vnd.github+json", forHTTPHeaderField: "accept")
-                let (data, response) = try await URLSession.shared.data(for: urlRequest)
-                if let jsonString = String(data: data, encoding: .utf8) {
-                    print("📦 APIの生データ: \n\(jsonString)")
+                pageIndex += 1
+                if response.items.count < SearchRepositoriesConst.perPage {
+                    canLoadMore = false
                 }
-                guard let httpResponse = response as? HTTPURLResponse else {
-                    throw URLError(.badServerResponse)
-                }
-                let status = SearchRepositoriesConst.StatusCode(rawValue: httpResponse.statusCode)
-                let decoder = JSONDecoder()
-                decoder.keyDecodingStrategy = .convertFromSnakeCase
-                switch status {
-                case .ok:
-                    let response = try decoder.decode(SearchRepositoriesResponse.self, from: data)
-                    if pageIndex == 1 {
-                        repositories = response.items
-                    } else {
-                        repositories?.append(contentsOf: response.items)
-                    }
-                    pageIndex += 1
-                    if response.items.count < SearchRepositoriesConst.perPage {
-                        canLoadMore = false
-                    }
-                    totalCount = response.totalCount
-                case .notModified:
-                    break
-                default:
-                    let response = try decoder.decode(SearchRepositoriesErrorResponse.self, from: data)
-                    errorMessage = response.message
-                    isErrorAlertPresented = true
-                    return
-                }
+                totalCount = response.totalCount
             } catch {
                 errorMessage = error.localizedDescription
                 isErrorAlertPresented = true
